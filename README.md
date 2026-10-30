@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>SHAFI AHMED M S</H3>
+<H3>212225240143</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>30.10.2.2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,56 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+# Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+ # Finding Missing Values
+df.isnull().sum()
+
+ # Check For Duplicates
+print(df.duplicated().sum())
+
+# Remove Unnecessary Columns
+df=df.drop(['Surname', 'Geography','Gender'], axis=1) 
+# Normalize the dataset
+scaler=StandardScaler()                                
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+
+# Split the dataset into input and output
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values  
+
+ # Splitting the data for training & Testing
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)  
+
+# X Train and Test
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)    
+
+# Y Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+*DATASET:
+
+<img width="1044" height="220" alt="{842433E4-4AAA-48B2-85F8-31EB6725F8E5}" src="https://github.com/user-attachments/assets/36161a61-a1b3-4d1a-93f1-88ada3b9683e" />
+
+DATA SPLITTING and TRAIN AND TEST DATA:
+
+<img width="947" height="618" alt="image" src="https://github.com/user-attachments/assets/4e786bce-08cb-437c-910c-2c16bc8caa51" />
+
+<img width="967" height="582" alt="image" src="https://github.com/user-attachments/assets/d5b41e36-3dc9-4b38-ac04-8ff677c4acdf" />
+
+<img width="1070" height="557" alt="image" src="https://github.com/user-attachments/assets/135b2d4e-92a0-43ce-ada8-0b812a3d2c14" />
+
+<img width="860" height="133" alt="image" src="https://github.com/user-attachments/assets/00bde6d9-b9fb-4941-90f4-363370188609" />
 
 
 ## RESULT:
